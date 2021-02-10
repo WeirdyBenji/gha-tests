@@ -33,3 +33,20 @@ jobs:
         with:
           name: coverage_outputs
           path: result.txt
+      
+  functional-tests:
+    runs-on: ubuntu-20.04
+    container: docker://epitechcontent/epitest-docker
+    
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          make
+          ./functional-test.sh >> result.txt
+          
+      - if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: function-tests_outputs
+          path: result.txt
+   
