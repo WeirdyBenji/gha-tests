@@ -26,8 +26,10 @@ jobs:
       - run: |
           make tests_run >> result.txt
           make coverage >> result.txt
+          return false
           
-      - uses: actions/upload-artifact@v2
+      - if: always()
+        uses: actions/upload-artifact@v2
         with:
           name: coverage_outputs
           path: result.txt
