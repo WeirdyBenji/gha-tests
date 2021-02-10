@@ -11,8 +11,14 @@ on:
     
 jobs:
   hello_world:
-    runs-on: ubuntu-20.04
+    runs-on: epitechcontent/epitest-docker
     
     steps:
+      - uses: actions/checkout@v2
+        
       - shell: bash
-        run: echo Hello world
+        run: |
+          make
+          make tests_run
+          make coverage
+          
