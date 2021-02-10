@@ -1,5 +1,18 @@
-#trigger event: push on branches dev and main
-#one job called hello-world which run on ubuntu-20.04
-
-#name: Tests
-#on: [push, pull_request]
+name: Tests
+on:
+  push:
+    branches:
+      - dev
+      - master
+  pull_request:
+    branches:
+      - dev
+      - master
+    
+jobs:
+  hello_world:
+    runs-on: ubuntu-20.04
+    
+    steps:
+      - shell: bash
+        run: echo Hello world
