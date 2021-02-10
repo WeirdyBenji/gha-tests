@@ -1,0 +1,5 @@
+#trigger event: push on branches dev and main
+#one job called hello-world which run on ubuntu-20.04
+
+#name: Tests
+#on: [push, pull_request]
