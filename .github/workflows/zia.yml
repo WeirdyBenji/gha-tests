@@ -1,0 +1,57 @@
+name: Tests
+on:
+  push:
+    branches:
+      - master
+      - dev
+  pull_request:
+    branches:
+      - master
+      - dev
+    
+jobs:
+  unit-tests:
+    runs-on: ubuntu-20.04
+    container: docker://epitechcontent/epitest-docker
+    
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          https://github.com/EpitechIT2020/B-YEP-500-TLS-5-1-zia-remi.deschamps --depth 1
+          mkdir build &&
+          cd build &&
+          conan install .. --build=missing &&
+          cmake .. -G “Unix Makefiles” &&
+          cmake --build .
+          make tests_run >> result.txt
+          make coverage >> result.txt
+          
+      - if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage_outputs
+          path: result.txt
+      
+      - if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: /build/bin/WZIA
+      
+  functional-tests:
+    runs-on: ubuntu-20.04
+    container: docker://epitechcontent/epitest-docker
+    
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          make
+          chmod +x ./functional-test.sh
+          ./functional-test.sh >> result.txt
+          
+      - if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: function-tests_outputs
+          path: result.txt
+   
