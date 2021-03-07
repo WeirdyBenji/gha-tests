@@ -27,7 +27,7 @@ jobs:
           mkdir build &&
           cd build &&
           conan install ../zia --build=missing &&
-          cmake ../zia -G “Unix Makefiles” &&
+          cmake ../zia -G "Unix Makefiles" &&
           cmake --build .
           make tests_run >> result.txt
           make coverage >> result.txt
