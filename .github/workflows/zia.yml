@@ -1,4 +1,4 @@
-name: Tests
+name: Tests Zia
 on:
   push:
     branches:
@@ -8,7 +8,7 @@ on:
     branches:
       - master
       - dev
-    
+
 jobs:
   unit-tests:
     runs-on: ubuntu-20.04
@@ -17,6 +17,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
+          #conan remote add conan-center https://bintray.com/conan/conan-center
+          conan remote add epitech https://bintray.com/epitech/public-conan
+          conan remote add bincrafters https://bintray.com/bincrafters/public-conan
+          conan profile update settings.compiler.libcxx=libstdc++11 default
           mkdir build &&
           cd build &&
           conan install ../zia --build=missing &&
