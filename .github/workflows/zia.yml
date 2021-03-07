@@ -20,7 +20,7 @@ jobs:
           #conan remote add conan-center https://bintray.com/conan/conan-center
           conan remote add epitech https://bintray.com/epitech/public-conan
           conan remote add bincrafters https://bintray.com/bincrafters/public-conan
-          conan profile new .conan/default --detect
+          conan profile new default --detect
           conan profile update settings.compiler.libcxx=libstdc++11 default
           mkdir build &&
           cd build &&
