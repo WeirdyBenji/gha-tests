@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          dnf install cmake
+          dnf update cmake
           pip install conan --upgrade
           #conan remote add conan-center https://bintray.com/conan/conan-center
           conan remote add epitech https://bintray.com/epitech/public-conan
