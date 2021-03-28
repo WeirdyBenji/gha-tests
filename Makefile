@@ -1,74 +1,64 @@
-##
-## PERSONAL PROJECT, 2020
-## DO OP
-## File description: Makefile
-##
-
 ## Var def ##
-SHELL		=	/bin/sh
-CC			= 	gcc
-RM			= 	rm -f
+SHELL	=	/bin/sh
+CC	= 	gcc
+RM	= 	rm -f
 ##############
 
-## Sources ##
-MAIN		=	main.c
+# Sources
+MAIN	=	main.c
 
 # Enable CLION job
-SRC			=	**/*.c
+SRC	=	**/*.c
 
-BIN_SRC		=	src/do-op.c		  	 \
-				src/error_handling.c \
+BIN_SRC	=	src/do-op.c \
+		src/error_handling.c
 
-TEST_SRC	=	tests/do-op.tests.c				\
-				tests/error_handling.tests.c
+TEST_SRC	=	tests/do-op.tests.c \
+			tests/error_handling.tests.c
 
-INC			= -I./include/
-#############
+INC	= -I./include/
 
-## Obj     ##
+# Obj
 MAIN_OBJ	=	$(MAIN:.c=.o)
 SRC_OBJ		=	$(BIN_SRC:.c=.o)
 TEST_OBJ	=	$(TEST_SRC:.c=.o)
-#############
 
-## Flags   ##
-CFLAGS		=	-Wall -Wextra
-CPPFLAGS	=	$(INC)
-LDFLAGS		=
-#############
+# Flags
+CFLAGS		+=	-Wall -Wextra -pedantic -Werror
+CPPFLAGS	+=	$(INC)
+LDFLAGS		+=
 
-## Names   ##
-BIN			=	do-op
+# Names
+BIN		=	do-op
 TEST_BIN	=	unit_tests
-#############
 
-## Rules   ##
+# Rules
 .PHONY: all
 all:	$(BIN)
 $(BIN):	$(MAIN_OBJ) $(SRC_OBJ)
 	$(CC) -o $(BIN) $(MAIN_OBJ) $(SRC_OBJ)
 
-## Debug
+# Debug
 .PHONY:	debug
 debug: fclean
 debug:	CFLAGS += -g3 -DDEBUG
 debug:	$(BIN)
 
-## Run test
+# Run test
 .PHONY: tests_run
-tests_run:  CFLAGS += --coverage
-tests_run:  LDFLAGS += -lcriterion -DUNIT_TEST
+tests_run:	CFLAGS += --coverage
+tests_run:	LDFLAGS += -lcriterion -DUNIT_TEST --always-succeed
 tests_run:	$(SRC_OBJ) $(TEST_OBJ)
-	$(CC) -o $(TEST_BIN) $(SRC_OBJ) $(TEST_OBJ) $(LDFLAGS) $(CFLAGS) $(CPPFLAGS)
+	$(CC) -o $(TEST_BIN) $(^) $(LDFLAGS) $(CFLAGS) $(CPPFLAGS)
 	./$(TEST_BIN)
 
-## Get coverage
+# Get coverage
 .PHONY: coverage
 coverage:
 	gcovr -b --exclude-directories tests
 	gcovr -r . --exclude-directories tests
 
-## Clear rules
+# Clear rules
 .PHONY: clean
 clean:
 	@$(RM)	$(MAIN_OBJ)
@@ -83,5 +73,3 @@ fclean: clean
 
 .PHONY: re
 re:	fclean all clean
-
-
