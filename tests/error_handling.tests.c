@@ -1,7 +1,3 @@
-//
-// Created by vasek on 20/09/2020.
-//
-
 #include <criterion/criterion.h>
 #include "do-op.h"
 
