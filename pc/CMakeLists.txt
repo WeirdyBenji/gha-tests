@@ -4,7 +4,7 @@ project(pc VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-set(CMAKE_AUTOUIC ON)
+#set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
@@ -40,16 +40,14 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
     )
 else()
-    if(ANDROID)
-        add_library(pc SHARED
-            ${PROJECT_SOURCES}
-        )
-    else()
-        add_executable(pc
-            ${PROJECT_SOURCES}
-        )
-    endif()
+    add_executable(pc
+        ${PROJECT_SOURCES}
+    )
 endif()
+
+enable_testing(true)
+
+add_test(NAME tests COMMAND t)
 
 target_link_libraries(pc PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
