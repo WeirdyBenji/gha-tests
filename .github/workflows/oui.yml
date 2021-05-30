@@ -26,7 +26,7 @@ jobs:
         run: |
           mkdir ./pipe/build
           cd ./pipe/build
-          cmake . -G "Unix Makefiles"
+          cmake .. -G "Unix Makefiles"
 
       - name: Unit tests
         run: |
