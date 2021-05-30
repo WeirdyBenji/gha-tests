@@ -4,11 +4,9 @@ on:
   push:
     branches:
       - dev
-      - qt
   pull_request:
     branches:
       - dev
-      - qt
 
 jobs:
   unit-tests:
