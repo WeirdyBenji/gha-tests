@@ -11,6 +11,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(QT_DIR "C:/Qt/6.0.3/mingw81_64/lib/cmake")
+
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
 # Check https://doc.qt.io/qt/deployment-android.html for more information.
 # They need to be set before the find_package( ...) calls below.
@@ -39,8 +41,9 @@ set(SOURCES
 )
 
 set(PROJECT_SOURCES
-    ${HEADERS}
-    ${SOURCES}
+    mainwindow.h
+    main.cpp
+    mainwindow.cpp
     mainwindow.ui
     ${TS_FILES}
 )
