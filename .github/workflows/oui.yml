@@ -15,9 +15,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         
-      - name: Run linter
-        run: |
-          pip install cpplint
+    #  - name: Run linter
+     #   run: |
+      #    pip install cpplint
        #   cpplint --recursive --exclude=./build/ --filter=-legal/copyright ./pc/ 2> lint_result.txt
           
       #- if: always()
@@ -35,7 +35,7 @@ jobs:
           cd ./pc/build
           cmake .. -G "Visual Studio 16 2019"
           cmake --build .
-          cat Makefile
+          cat ../Makefile
           make
 
       - name: Unit tests
