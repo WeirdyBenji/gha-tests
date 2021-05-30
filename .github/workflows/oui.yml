@@ -17,13 +17,14 @@ jobs:
         
       - name: Run linter
         run: |
+          pip install cpplint
           cpplint --recursive --exclude=build --filter=-legal/copyright . 2> lint_result.txt
           
       - if: always()
         uses: actions/upload-artifact@v2
-          with:
-            name: lint_outputs
-            path: lint_result.txt
+        with:
+          name: lint_outputs
+          path: lint_result.txt
 
       - name: Install qt
         uses: jurplel/install-qt-action@v2.13.2
