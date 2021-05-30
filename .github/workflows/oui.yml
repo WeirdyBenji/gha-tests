@@ -1,0 +1,19 @@
+name: PC Application
+
+on:
+  push:
+    branches:
+      - qt
+  pull_request:
+    branches:
+      - qt
+        
+jobs:
+  lint:
+    runs-on:
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+          
+        - name: Run linter
+          uses: github/super-linter@v3
