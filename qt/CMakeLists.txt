@@ -29,12 +29,20 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools REQUIRED)
 
 set(TS_FILES pc_en_150.ts)
 
+set(HEADERS
+    include/mainwindow.h
+)
+
+set(SOURCES
+    src/main.cpp
+    src/mainwindow.cpp
+)
+
 set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
-        ${TS_FILES}
+    ${HEADERS}
+    ${SOURCES}
+    mainwindow.ui
+    ${TS_FILES}
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
