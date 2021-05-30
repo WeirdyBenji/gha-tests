@@ -35,7 +35,8 @@ jobs:
           cd ./pc/build
           cmake .. -G "Visual Studio 16 2019"
           cmake --build .
-          make Release
+          cat Makefile
+          make
 
       - name: Unit tests
         run: |
