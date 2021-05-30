@@ -1,18 +1,18 @@
-name: Tests Zia
+name: Tests Qt
+
 on:
   push:
     branches:
-      - master
       - dev
+      - qt
   pull_request:
     branches:
-      - master
       - dev
+      - qt
 
 jobs:
   unit-tests:
     runs-on: ubuntu-20.04
-    container: docker://epitechcontent/epitest-docker
     
     steps:
       - uses: actions/checkout@v2
@@ -27,7 +27,7 @@ jobs:
           mkdir build &&
           cd build &&
           conan install ../zia --build=missing &&
-          cmake ../zia -G "Unix Makefiles" &&
+          cmake . -G "Unix Makefiles" &&
           cmake --build .
           make tests_run >> result.txt
           make coverage >> result.txt

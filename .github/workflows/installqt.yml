@@ -1,0 +1,25 @@
+- name: Qt
+  uses: jurplel/install-qt-action@v2.13.2
+
+on:
+  push:
+    branches:
+      - qt
+
+jobs:
+  unit-tests:
+    steps:
+      run: |
+        - cd pipe && \
+          mkdir build && \
+          cd build && \
+          cmake . -G "Unix Makefiles" && \
+          cmake --build .
+        - make tests_run >> result.txt
+        - make coverage >> result.txt
+
+      - if: always()
+        uses: actions/upload-artifact@v2
+          with:
+            name: coverage_outputs
+            path: result.txt
