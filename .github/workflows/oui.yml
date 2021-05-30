@@ -24,8 +24,8 @@ jobs:
 
       - name: Build
         run: |
-          mkdir ./pipe/build
-          cd ./pipe/build
+          mkdir ./pc/build
+          cd ./pc/build
           cmake .. -G "Visual Studio 16 2019"
 
       - name: Unit tests
