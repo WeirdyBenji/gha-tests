@@ -46,24 +46,6 @@ set(PROJECT_SOURCES
     ${TS_FILES}
 )
 
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(pc
-        ${PROJECT_SOURCES}
-    )
 
-    #qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
-else()
-    if(ANDROID)
-        add_library(pc SHARED
-            ${PROJECT_SOURCES}
-        )
-    else()
-        add_executable(pc
-            ${PROJECT_SOURCES}
-        )
-    endif()
-
-    q#t5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
-endif()
 
 target_link_libraries(pc PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
