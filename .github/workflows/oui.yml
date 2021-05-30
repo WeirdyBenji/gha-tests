@@ -27,6 +27,7 @@ jobs:
           mkdir ./pc/build
           cd ./pc/build
           cmake .. -G "Visual Studio 16 2019"
+          cmake --build .
 
       - name: Unit tests
         run: |
