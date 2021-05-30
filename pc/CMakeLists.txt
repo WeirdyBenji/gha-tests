@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(pc LANGUAGES CXX)
+project(dazdf VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -27,25 +27,38 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
-set(TS_FILES pc_en_150.ts)
-
-set(HEADERS
-    include/mainwindow.h
-)
-
-set(SOURCES
-    src/main.cpp
-    src/mainwindow.cpp
-)
-
 set(PROJECT_SOURCES
-    mainwindow.h
-    main.cpp
-    mainwindow.cpp
-    mainwindow.ui
-    ${TS_FILES}
+        main.cpp
+        mainwindow.cpp
+        mainwindow.h
+        mainwindow.ui
 )
 
+if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+    qt_add_executable(dazdf
+        MANUAL_FINALIZATION
+        ${PROJECT_SOURCES}
+    )
+else()
+    if(ANDROID)
+        add_library(dazdf SHARED
+            ${PROJECT_SOURCES}
+        )
+    else()
+        add_executable(dazdf
+            ${PROJECT_SOURCES}
+        )
+    endif()
+endif()
 
+target_link_libraries(dazdf PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
-target_link_libraries(pc PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+set_target_properties(dazdf PROPERTIES
+    MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
+    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+)
+
+if(QT_VERSION_MAJOR EQUAL 6)
+    qt_finalize_executable(dazdf)
+endif()
