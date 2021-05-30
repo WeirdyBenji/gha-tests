@@ -17,15 +17,21 @@ jobs:
         
       - name: Run linter
         run: |
-          echo To be implemented
+          echo "To be implemented"
 
       - name: Install qt
         uses: jurplel/install-qt-action@v2.13.2
 
+      - name: Build
+        run: |
+          mkdir ./pipe/build
+          cd ./pipe/build
+          cmake . -G "Unix Makefiles"
+
       - name: Unit tests
         run: |
-          echo To be implemented
+          echo "To be implemented"
     
       - name: Functional tests
         run: |
-          echo To be implemented
+          echo "To be implemented"
