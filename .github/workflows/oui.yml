@@ -17,7 +17,13 @@ jobs:
         
       - name: Run linter
         run: |
-          echo "To be implemented"
+          cpplint --recursive --exclude=build --filter=-legal/copyright . 2> lint_result.txt
+          
+      - if: always()
+        uses: actions/upload-artifact@v2
+          with:
+            name: lint_outputs
+            path: lint_result.txt
 
       - name: Install qt
         uses: jurplel/install-qt-action@v2.13.2
@@ -28,10 +34,11 @@ jobs:
           cd ./pc/build
           cmake .. -G "Visual Studio 16 2019"
           cmake --build .
+          make Release
 
       - name: Unit tests
         run: |
-          echo "To be implemented"
+          echo "To be implemented + coverage"
     
       - name: Functional tests
         run: |
