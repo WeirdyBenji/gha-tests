@@ -11,54 +11,54 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# QtCreator supports the following variables for Android, which are identical to qmake Android variables.
-# Check https://doc.qt.io/qt/deployment-android.html for more information.
-# They need to be set before the find_package( ...) calls below.
-
-#if(ANDROID)
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-#    if (ANDROID_ABI STREQUAL "armeabi-v7a")
-#        set(ANDROID_EXTRA_LIBS
-#            ${CMAKE_CURRENT_SOURCE_DIR}/path/to/libcrypto.so
-#            ${CMAKE_CURRENT_SOURCE_DIR}/path/to/libssl.so)
-#    endif()
-#endif()
 
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
+set(SOURCES
+	src/main.cpp
+    src/mainwindow.cpp
+)
+
+set(HEADERS
+	include/mainwindow.h
+)
+
+set(FORM_FILES
+	mainwindow.ui
+)
+
 set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
+	${SOURCES}
+    ${HEADERS}
+    ${FORM_FILES}
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(dazdf
+    qt_add_executable(pc
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
     )
 else()
     if(ANDROID)
-        add_library(dazdf SHARED
+        add_library(pc SHARED
             ${PROJECT_SOURCES}
         )
     else()
-        add_executable(dazdf
+        add_executable(pc
             ${PROJECT_SOURCES}
         )
     endif()
 endif()
 
-target_link_libraries(dazdf PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(pc PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
-set_target_properties(dazdf PROPERTIES
+set_target_properties(pc PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
 )
 
 if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(dazdf)
+    qt_finalize_executable(pc)
 endif()
