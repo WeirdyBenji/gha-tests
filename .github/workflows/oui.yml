@@ -9,11 +9,23 @@ on:
       - qt
         
 jobs:
-  lint:
+  all:
     runs-on: windows-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
         
       - name: Run linter
-        uses: github/super-linter@v3
+        run: |
+          @echo 'To be implemented'
+
+      - name: Install qt
+        uses: jurplel/install-qt-action@v2.13.2
+
+      - name: Unit tests
+        run: |
+          @echo 'To be implemented'
+    
+      - name: Functional tests
+        run: |
+          @echo 'To be implemented'
