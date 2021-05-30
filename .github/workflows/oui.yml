@@ -10,10 +10,10 @@ on:
         
 jobs:
   lint:
-    runs-on:
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v2
-          
-        - name: Run linter
-          uses: github/super-linter@v3
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Run linter
+        uses: github/super-linter@v3
