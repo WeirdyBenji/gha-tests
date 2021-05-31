@@ -44,4 +44,4 @@ jobs:
     
       - name: Functional tests
         run: |
-          start ./build/Release/pc.exe
+          start ./Release/pc.exe
