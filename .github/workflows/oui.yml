@@ -44,4 +44,4 @@ jobs:
     
       - name: Functional tests
         run: |
-          echo "To be implemented"
+          start ./build/Release/pc.exe

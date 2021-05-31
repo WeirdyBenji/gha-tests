@@ -1,4 +1,4 @@
-C:/Users/Raccoon/Documents/GitHub/workshop-ga-weirdybenji/pc/build/pc_autogen/include_Debug/6YEA5652QU/moc_mainwindow.cpp: C:/Users/Raccoon/Documents/GitHub/workshop-ga-weirdybenji/pc/include/mainwindow.h \
+C:/Users/Raccoon/Documents/GitHub/workshop-ga-weirdybenji/pc/build/pc_autogen/include_Release/EWIEGA46WW/moc_mainwindow.cpp: C:/Users/Raccoon/Documents/GitHub/workshop-ga-weirdybenji/pc/mainwindow.h \
   C:/Qt/5.15.2/msvc2019_64/include/QtCore/qalgorithms.h \
   C:/Qt/5.15.2/msvc2019_64/include/QtCore/qarraydata.h \
   C:/Qt/5.15.2/msvc2019_64/include/QtCore/qatomic.h \

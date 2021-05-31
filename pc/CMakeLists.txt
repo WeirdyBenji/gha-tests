@@ -4,7 +4,7 @@ project(pc VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-#set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
@@ -16,12 +16,12 @@ find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 set(SOURCES
-	src/main.cpp
-    src/mainwindow.cpp
+	main.cpp
+    mainwindow.cpp
 )
 
 set(HEADERS
-	include/mainwindow.h
+	mainwindow.h
 )
 
 set(FORM_FILES
