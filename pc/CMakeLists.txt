@@ -12,20 +12,20 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets Network REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Network REQUIRED)
 
 set(SOURCES
-	main.cpp
+    main.cpp
     mainwindow.cpp
 )
 
 set(HEADERS
-	mainwindow.h
+    mainwindow.h
 )
 
 set(FORM_FILES
-	mainwindow.ui
+    mainwindow.ui
 )
 
 set(PROJECT_SOURCES
@@ -49,7 +49,7 @@ enable_testing(true)
 
 add_test(NAME tests COMMAND t)
 
-target_link_libraries(pc PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(pc PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network)
 
 set_target_properties(pc PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
